@@ -24,14 +24,15 @@ export default {
 }
 </script>
 
-<style>
-    .contador span {
+/* Com o scoped, ele só aplica os estilos nesse arquivo */
+<style scoped>
+    span {
         border-bottom: 1px solid #CCC;
         height: 30px;
         padding: 5px 25px;
     }
 
-    .contador button {
+    button {
         height: 30px;
         widows: 30px;
         border-radius: 15px;
