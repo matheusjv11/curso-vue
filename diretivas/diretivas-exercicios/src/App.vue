@@ -2,10 +2,9 @@
 	<div id="app">
 		<h1>Diretivas</h1>
 		<p v-destaque="'pink'" >Using a custom directive</p>
-		<p v-destaque-local="'red'" >Using a custom directive 1</p>
 		<p v-destaque:fundo="'pink'" >Using a custom directive 2</p>
 		<p v-destaque:fundo.atrasar="'pink'" >Using a custom directive 3</p>
-		<p v-destaque-local.atrasar.alternar="'red'" >Using a custom directive 4</p>
+		<p v-destaque-local.atrasar.alternar="{cor1: 'green', cor2: 'red', atraso: 2000, intervalo: 200}" >Using a custom directive 5</p>
 	</div>
 </template>
 
@@ -25,10 +24,10 @@ export default {
 
 				let atraso = 0
 
-				if (biding.modifiers['atrasar']) atraso = 3000
+				if (biding.modifiers['atrasar']) atraso = biding.value.atraso
 
-				let cor1 = biding.value
-				let cor2 = 'purple'
+				let cor1 = biding.value.cor1
+				let cor2 = biding.value.cor2
 				let corAtual = cor1
 
 				setTimeout(() => {
@@ -36,7 +35,7 @@ export default {
 						setInterval(() => {
 							corAtual = corAtual === cor1 ? cor2 : cor1
 							aplicarCor(corAtual)
-						}, 1000)
+						}, biding.value.intervalo)
 					} else {
 						aplicarCor(corAtual)
 					}					
