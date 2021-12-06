@@ -51,23 +51,50 @@
 		>
 			<div v-if="exibir2" class="caixa"></div>
 		</transition>
+
+		<hr>
+		<b-button variant="primary" @click="componenteSelecionado = 'AlertaInfo'">Info</b-button>
+		<b-button variant="secondary" @click="componenteSelecionado = 'AlertaAdvertencia'">Advertencia</b-button>
+		
+		<transition name="fade" mode="out-in">
+			<component :is="componenteSelecionado"></component>
+		</transition>
+
+		<hr>
+		<b-button @click="adicionarAluno" class="mb-4">Adicionar aluno</b-button>
+		<transition-group name="slide">
+			<b-list-group v-for="(aluno, i) in alunos" :key="aluno">
+				<b-list-group-item @click="removerAluno(i)">{{ aluno }}</b-list-group-item>
+			</b-list-group>
+		</transition-group>
 	</div>
 </template>
 
 <script>
-
+import AlertaAdvertencia from './AlertaAdvertencia.vue'
+import AlertaInfo from './AlertaInfo.vue'
 
 export default {
+	components: {AlertaAdvertencia, AlertaInfo},
 	data() {
 		return {
+			alunos: ['Roberto', 'Julia', 'Teresa', 'Paulo'],
 			msg: 'Uma mensagem de informação para o usuário',
 			exibir: true,
 			exibir2: false,
 			tipoAnimacao: 'fade',
-			larguraBase: 0
+			larguraBase: 0,
+			componenteSelecionado: 'AlertaInfo'
 		}
 	},
 	methods: {
+		adicionarAluno() {
+			const s = Math.random().toString(36).substring(2)
+			this.alunos.push(s)
+		},
+		removerAluno(indice) {
+			this.alunos.splice(indice, 1)
+		},
 		animar(el, done, negativo) {
 			let rodada = 1
 			const temporizador = setInterval(() => {
@@ -156,12 +183,18 @@ export default {
 } 
 
 .slide-leave-active {
+	position: absolute;
+	width: 100%;
 	animation: slide-out 2s ease;
 	transition: opacity 2s;
 }
 
 .slide-enter, .slide-leave-to{
 	opacity: 0;
+}
+
+.slide-move {
+	transition: transform 1s;
 }
 
 </style>
