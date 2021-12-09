@@ -1,4 +1,4 @@
-<template lang="">
+<template >
     <div class="tasks-progress">
         <span class="progress-value">{{ progress }}%</span>
         <div class="progress-bar" :style="{width: progress + '%' }"></div>

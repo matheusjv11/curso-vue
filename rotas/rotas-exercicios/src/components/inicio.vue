@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <div class="inicio">
         <h2>Início</h2>
     </div>
@@ -8,6 +8,6 @@ export default {
     
 }
 </script>
-<style lang="">
+<style >
     
 </style>

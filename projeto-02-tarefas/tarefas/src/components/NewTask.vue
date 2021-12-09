@@ -1,4 +1,4 @@
-<template lang="">
+<template >
     <div class="new-task">
         <input v-model="name" @keydown.enter="add" type="text" class="form-element" placeholder="Nova tarefa?">
         <button @click="add" class="form-element" >+</button>
