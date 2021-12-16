@@ -7,7 +7,8 @@
         <router-link tag="button" primario :to="{
             name: 'editarUsuario', 
             params: {id: $route.params.id},
-            query: {completo: true, lingua: 'pt'}
+            query: {completo: true, lingua: 'pt'},
+            hash: '#rodape'
             }">
             Editar
         </router-link>
